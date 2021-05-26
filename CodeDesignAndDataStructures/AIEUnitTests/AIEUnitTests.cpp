@@ -228,7 +228,21 @@ namespace AIEUnitTests
 
 		TEST_METHOD(Insert_Into_List)
 		{
+			LinkedList<int> list = { 10, 20, 30, 40 };
 
+			auto iter = std::find(list.begin(), list.end(), 30);
+
+			list.Insert(iter, 35);
+
+			Assert::IsNotNull(list.FirstNode());
+			Assert::IsNotNull(list.LastNode());
+
+			Assert::AreEqual(list.FirstNode()->value, 10);
+			Assert::AreEqual(list.LastNode()->value, 40);
+
+			Assert::IsFalse(list.IsEmpty());
+
+			Assert::IsTrue(list.Count() == 5u);
 		}
 	};
 }

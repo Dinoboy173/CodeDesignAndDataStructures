@@ -3,50 +3,34 @@
 
 int main()
 {
-    //LinkedList<int> list = { 40, 10, 20, 40, 30, 50, 40, 60, 70, 40 };
+    LinkedList<int> list = { 40, 10, 20, 40, 30, 50, 40, 60, 70, 40 };
 
-    //for (auto iter = list.begin(); iter != list.end(); iter++)
-    //{
-    //    std::cout << *iter << std::endl;
-    //}
+    for (auto iter = list.begin(); iter != list.end(); iter++)
+    {
+        std::cout << *iter << std::endl;
+    }
 
-    //std::cout << std::endl;
+    std::cout << std::endl;
 
-    //for (auto iter = list.begin(); iter != list.end();)
-    //{
-    //    // we want to remove all occurences of 99
-    //    if (*iter == 40)
-    //    {
-    //        // remove the node - update iter so that its pointing
-    //        // at the next valid item
-    //        iter = list.Remove(iter);
-    //    }
-    //    else
-    //    {
-    //        // if we didnt remove, we can move to the next item
-    //        iter++;
-    //    }
-    //}
+    for (auto iter = list.begin(); iter != list.end();)
+    {
+        if (*iter == 40)
+        {
+            iter = list.Remove(iter);
+        }
+        else
+        {
+            iter++;
+        }
+    }
 
-    //auto iter = std::find(list.begin(), list.end(), 30);
+    auto iter = std::find(list.begin(), list.end(), 70);
 
-    //list.Insert(iter, 35);
+    list.Insert(iter, 80);
 
-    //for (auto& value : list)
-    //{
-    //    std::cout << value << std::endl;
-    //}
+    std::cout << std::endl;
 
-    //std::cout << std::endl;
-
-    //LinkedList<int>::Node* rIter = list.LastNode();
-    //while (rIter != nullptr)
-    //{
-    //    std::cout << rIter->value << std::endl;
-    //    rIter = rIter->prev;
-    //}
-
-    LinkedList<int> myList = { 10, 20, 30, 40, 50, 60 };
+    /*LinkedList<int> myList = { 10, 20, 30, 40, 50, 60 };
     std::cout << "Count: " << myList.Count() << "\t\t Expected: 6" << std::endl;
 
     myList.PushBack(70);
@@ -75,5 +59,5 @@ int main()
     std::cout << "Count: " << myList.Count() << "\t\t Expected: 6" << std::endl;
 
     myList.Clear();
-    std::cout << "Count: " << myList.Count() << "\t\t Expected: 0" << std::endl;
+    std::cout << "Count: " << myList.Count() << "\t\t Expected: 0" << std::endl;*/
 }

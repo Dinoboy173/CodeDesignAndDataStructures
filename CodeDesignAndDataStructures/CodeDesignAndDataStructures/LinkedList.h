@@ -171,6 +171,7 @@ public:
     {
         // TODO
     }
+
     void Clear()
     {
         bool isOneLeft = false;
@@ -220,6 +221,7 @@ public:
         Node* newNode = new Node();
         newNode->value = value;
 
+        
         currentNode->next->prev = newNode;
         newNode->next = currentNode->next;
 

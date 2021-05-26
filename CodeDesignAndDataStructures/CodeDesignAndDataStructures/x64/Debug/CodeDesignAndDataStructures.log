@@ -1,1 +1,3 @@
-﻿  CodeDesignAndDataStructures.vcxproj -> C:\Users\dinob\OneDrive\Desktop\AIE\CodeDesignAndDataStructures\CodeDesignAndDataStructures\x64\Debug\LinkedLists.exe
+﻿  main.cpp
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\main.cpp(31,10): error C2371: 'iter': redefinition; different basic types
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\main.cpp(27): message : see declaration of 'iter'
