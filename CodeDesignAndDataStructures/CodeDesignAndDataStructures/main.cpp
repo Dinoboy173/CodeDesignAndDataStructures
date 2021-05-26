@@ -3,7 +3,9 @@
 
 int main()
 {
-    LinkedList<int> list = { 40, 10, 20, 40, 30, 50, 40, 60, 70, 40 };
+    int sortAttempts = 0;
+
+    LinkedList<int> list = { 10, 20, 30 };
 
     for (auto iter = list.begin(); iter != list.end(); iter++)
     {
@@ -12,23 +14,26 @@ int main()
 
     std::cout << std::endl;
 
-    for (auto iter = list.begin(); iter != list.end();)
+    while (true)
     {
-        if (*iter == 40)
+        std::string command = "";
+
+        std::cin >> command;
+
+        if (command == "sort")
         {
-            iter = list.Remove(iter);
-        }
-        else
-        {
-            iter++;
+            list.Sort();
+
+            sortAttempts++;
+
+            for (auto iter = list.begin(); iter != list.end(); iter++)
+            {
+                std::cout << *iter << std::endl;
+            }
+            std::cout << std::endl;
+            std::cout << sortAttempts << std::endl << std::endl;
         }
     }
-
-    auto iter = std::find(list.begin(), list.end(), 70);
-
-    list.Insert(iter, 80);
-
-    std::cout << std::endl;
 
     /*LinkedList<int> myList = { 10, 20, 30, 40, 50, 60 };
     std::cout << "Count: " << myList.Count() << "\t\t Expected: 6" << std::endl;

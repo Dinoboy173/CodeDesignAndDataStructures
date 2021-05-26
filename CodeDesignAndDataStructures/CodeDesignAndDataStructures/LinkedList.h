@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <time.h>
+
 template<class T>
 class LinkedList
 {
@@ -56,37 +59,14 @@ public:
     {
     }
 
-    LinkedList(std::initializer_list<T> list)
-    {
-        for (auto iter = list.begin(); iter != list.end(); iter++)
-            PushBack(*iter);
-    }
-
     ~LinkedList()
     {
     }
 
-    void CreateFirst(T value)
+    LinkedList(std::initializer_list<T> list)
     {
-        Node* n = new Node();
-
-        n->value = value;
-        n->next = nullptr;
-        n->prev = nullptr;
-
-        m_first = n;
-        m_last = n;
-
-        m_count++;
-    }
-
-    void RemoveWhenOne()
-    {
-        delete m_first;
-        m_first = nullptr;
-        m_last = nullptr;
-
-        m_count--;
+        for (auto iter = list.begin(); iter != list.end(); iter++)
+            PushBack(*iter);
     }
 
     void PushBack(T value)
@@ -167,16 +147,89 @@ public:
         }
     }
 
-    void Sort(std::string sortBy)
+    void Sort()
     {
-        // TODO
+        Node* nodeToMove = new Node();
+
+        nodeToMove->value = 0;
+        nodeToMove->next = nullptr;
+        nodeToMove->prev = nullptr;
+
+        bool nodeSelected = false;
+        int count = m_count;
+        int stop;
+
+        srand(time(NULL));
+
+        while (count != 0)
+        {
+            while (!nodeSelected)
+            {
+                for (auto iter = begin(); iter != end();)
+                {
+                    stop = rand() % m_count + 1;
+
+                    if (stop <= 1)
+                    {
+                        nodeToMove = iter.node;
+                        nodeSelected = true;
+                        break;
+                    }
+                    else
+                        iter++;
+                }
+            }
+
+            while (nodeSelected)
+            {
+                for (auto iter = begin(); iter != end();)
+                {
+                    stop = rand() % m_count + 1;
+
+                    if (stop <= 1)
+                    {
+                        if (iter == FirstNode())
+                            PushFront(nodeToMove->value);
+                        else if (iter == LastNode())
+                            PushBack(nodeToMove->value);
+                        else
+                            Insert(iter, nodeToMove->value);
+
+                        if (nodeToMove == FirstNode())
+                            PopFront();
+                        else if (nodeToMove == LastNode())
+                            PopBack();
+                        else
+                            iter = Remove(nodeToMove);
+
+                        count--;
+                        nodeSelected = false;
+                        break;
+                    }
+                    else
+                        iter++;
+                }
+            }
+        }
+
+        // for (auto iter = begin().Next(); iter != end(); iter++)
+        // {
+        //     if (iter.node->prev->value >= iter.node->value)
+        //     {
+        //         Sort();
+        //         sortAttempts++;
+        //     }
+        //     else if (iter == end() || sortAttempts >= 1)
+        //     {
+        //         break;
+        //     }
+        // }
     }
 
     void Clear()
     {
         bool isOneLeft = false;
 
-        // TODO:
         while (!isOneLeft)
         {
             if (m_first == m_last)
@@ -221,7 +274,6 @@ public:
         Node* newNode = new Node();
         newNode->value = value;
 
-        
         currentNode->next->prev = newNode;
         newNode->next = currentNode->next;
 
@@ -246,6 +298,29 @@ public:
         return m_count;
     }
 
+    void CreateFirst(T value)
+    {
+        Node* n = new Node();
+
+        n->value = value;
+        n->next = nullptr;
+        n->prev = nullptr;
+
+        m_first = n;
+        m_last = n;
+
+        m_count++;
+    }
+
+    void RemoveWhenOne()
+    {
+        delete m_first;
+        m_first = nullptr;
+        m_last = nullptr;
+
+        m_count--;
+    }
+
     Node* FirstNode()
     {
         return m_first;
@@ -259,7 +334,6 @@ public:
     Iterator begin()
     {
         return Iterator(m_first);
-    
     }
     Iterator end()
     {
