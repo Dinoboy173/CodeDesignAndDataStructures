@@ -5,7 +5,7 @@ int main()
 {
     int sortAttempts = 0;
 
-    LinkedList<int> list = { 10, 20, 30 };
+    LinkedList<int> list = { 10, 20, 30, 40, 50, 60, 70 };
 
     for (auto iter = list.begin(); iter != list.end(); iter++)
     {

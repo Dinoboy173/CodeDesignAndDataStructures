@@ -156,12 +156,12 @@ public:
         nodeToMove->prev = nullptr;
 
         bool nodeSelected = false;
-        int count = m_count;
+        int sortCount = m_count;
         int stop;
 
         srand(time(NULL));
 
-        while (count != 0)
+        while (sortCount != 0)
         {
             while (!nodeSelected)
             {
@@ -202,7 +202,7 @@ public:
                         else
                             iter = Remove(nodeToMove);
 
-                        count--;
+                        sortCount--;
                         nodeSelected = false;
                         break;
                     }
@@ -211,19 +211,6 @@ public:
                 }
             }
         }
-
-        // for (auto iter = begin().Next(); iter != end(); iter++)
-        // {
-        //     if (iter.node->prev->value >= iter.node->value)
-        //     {
-        //         Sort();
-        //         sortAttempts++;
-        //     }
-        //     else if (iter == end() || sortAttempts >= 1)
-        //     {
-        //         break;
-        //     }
-        // }
     }
 
     void Clear()
