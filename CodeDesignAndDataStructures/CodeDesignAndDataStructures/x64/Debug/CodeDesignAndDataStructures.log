@@ -1,6 +1,11 @@
 ﻿  main.cpp
-C:\Users\dinob\OneDrive\Desktop\AIE\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\LinkedList.h(162,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\dinob\OneDrive\Desktop\AIE\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\LinkedList.h(151): message : while compiling class template member function 'void LinkedList<int>::Sort(void)'
-C:\Users\dinob\OneDrive\Desktop\AIE\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\main.cpp(25): message : see reference to function template instantiation 'void LinkedList<int>::Sort(void)' being compiled
-C:\Users\dinob\OneDrive\Desktop\AIE\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\main.cpp(8): message : see reference to class template instantiation 'LinkedList<int>' being compiled
-  CodeDesignAndDataStructures.vcxproj -> C:\Users\dinob\OneDrive\Desktop\AIE\CodeDesignAndDataStructures\CodeDesignAndDataStructures\x64\Debug\LinkedLists.exe
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\LinkedList.h(166,24): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\LinkedList.h(352): message : see reference to class template instantiation 'LinkedList<T>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\chrono(632): message : see reference to class template instantiation 'std::chrono::duration<double,std::ratio<1,1>>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\chrono(178): message : see reference to class template instantiation 'std::chrono::duration<__int64,std::nano>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\chrono(610): message : see reference to class template instantiation 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>' being compiled
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\LinkedList.h(166,23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\LinkedList.h(151): message : while compiling class template member function 'void LinkedList<int>::Sort(void)'
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\main.cpp(27): message : see reference to function template instantiation 'void LinkedList<int>::Sort(void)' being compiled
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\main.cpp(7): message : see reference to class template instantiation 'LinkedList<int>' being compiled
+  CodeDesignAndDataStructures.vcxproj -> C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\x64\Debug\LinkedLists.exe

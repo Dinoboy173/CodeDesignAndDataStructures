@@ -149,66 +149,82 @@ public:
 
     void Sort()
     {
-        Node* nodeToMove = new Node();
+        bool isSorted = false;
 
-        nodeToMove->value = 0;
-        nodeToMove->next = nullptr;
-        nodeToMove->prev = nullptr;
-
-        bool nodeSelected = false;
-        int sortCount = m_count;
-        int stop;
-
-        srand(time(NULL));
-
-        while (sortCount != 0)
+        while (!isSorted)
         {
-            while (!nodeSelected)
-            {
-                for (auto iter = begin(); iter != end();)
-                {
-                    stop = rand() % m_count + 1;
+            Node* nodeToMove = new Node();
 
-                    if (stop <= 1)
+            nodeToMove->value = 0;
+            nodeToMove->next = nullptr;
+            nodeToMove->prev = nullptr;
+
+            bool nodeSelected = false;
+            int sortCount = m_count;
+            int stop;
+
+            srand(time(NULL));
+
+            while (sortCount != 0)
+            {
+                while (!nodeSelected)
+                {
+                    for (auto iter = begin(); iter != end();)
                     {
-                        nodeToMove = iter.node;
-                        nodeSelected = true;
-                        break;
+                        stop = rand() % m_count + 1;
+
+                        if (stop <= 1)
+                        {
+                            nodeToMove = iter.node;
+                            nodeSelected = true;
+                            break;
+                        }
+                        else
+                            iter++;
                     }
-                    else
-                        iter++;
+                }
+
+                while (nodeSelected)
+                {
+                    for (auto iter = begin(); iter != end();)
+                    {
+                        stop = rand() % m_count + 1;
+
+                        if (stop <= 1)
+                        {
+                            if (iter == FirstNode())
+                                PushFront(nodeToMove->value);
+                            else if (iter == LastNode())
+                                PushBack(nodeToMove->value);
+                            else
+                                Insert(iter, nodeToMove->value);
+
+                            if (nodeToMove == FirstNode())
+                                PopFront();
+                            else if (nodeToMove == LastNode())
+                                PopBack();
+                            else
+                                iter = Remove(nodeToMove);
+
+                            sortCount--;
+                            nodeSelected = false;
+                            break;
+                        }
+                        else
+                            iter++;
+                    }
                 }
             }
 
-            while (nodeSelected)
+            for (auto iter = Iterator(FirstNode()->next); iter != end(); iter++)
             {
-                for (auto iter = begin(); iter != end();)
+                if (iter.node->prev->value > iter.node->value)
                 {
-                    stop = rand() % m_count + 1;
-
-                    if (stop <= 1)
-                    {
-                        if (iter == FirstNode())
-                            PushFront(nodeToMove->value);
-                        else if (iter == LastNode())
-                            PushBack(nodeToMove->value);
-                        else
-                            Insert(iter, nodeToMove->value);
-
-                        if (nodeToMove == FirstNode())
-                            PopFront();
-                        else if (nodeToMove == LastNode())
-                            PopBack();
-                        else
-                            iter = Remove(nodeToMove);
-
-                        sortCount--;
-                        nodeSelected = false;
-                        break;
-                    }
-                    else
-                        iter++;
+                    break;
                 }
+
+                if (iter == Iterator(LastNode()))
+                    isSorted = true;
             }
         }
     }

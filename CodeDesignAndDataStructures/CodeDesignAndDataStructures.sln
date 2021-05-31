@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinkedLists", "CodeDesignAn
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIEUnitTests", "AIEUnitTests\AIEUnitTests.vcxproj", "{A81003B0-D793-4705-9175-D8F3F80E060B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BinaryTree", "BinaryTree\BinaryTree.vcxproj", "{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{A81003B0-D793-4705-9175-D8F3F80E060B}.Release|x64.Build.0 = Release|x64
 		{A81003B0-D793-4705-9175-D8F3F80E060B}.Release|x86.ActiveCfg = Release|Win32
 		{A81003B0-D793-4705-9175-D8F3F80E060B}.Release|x86.Build.0 = Release|Win32
+		{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}.Debug|x64.ActiveCfg = Debug|x64
+		{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}.Debug|x64.Build.0 = Debug|x64
+		{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}.Debug|x86.ActiveCfg = Debug|Win32
+		{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}.Debug|x86.Build.0 = Debug|Win32
+		{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}.Release|x64.ActiveCfg = Release|x64
+		{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}.Release|x64.Build.0 = Release|x64
+		{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}.Release|x86.ActiveCfg = Release|Win32
+		{FE6C70BD-0711-4907-98A2-5AA5DCF95F91}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
