@@ -104,20 +104,22 @@ void Insert(Node* root, Node* nodeToInsert)
 void DetatchParent(Node* childNode, Node* parentNode)
 {
     if (childNode->value < parentNode->value)
+    {
         parentNode->left = nullptr;
+    }
     else if (childNode->value > parentNode->value)
+    {
         parentNode->right = nullptr;
+    }
 }
 
-Node SplitTree(Node* root, int value)
+Node* SplitTree(Node* root, int value)
 {
     bool isFound = false;
     bool valueIsLeft;
 
     Node* parentNode = root;
     Node* secondTreeRoot = root;
-
-    Node nullReturn = Node(NULL, nullptr, nullptr);
 
     while (!isFound)
     {
@@ -139,7 +141,7 @@ Node SplitTree(Node* root, int value)
                 }
             }
             else
-                return nullReturn;
+                return nullptr;
         }
         else if (value > parentNode->value)
         {
@@ -157,45 +159,103 @@ Node SplitTree(Node* root, int value)
                 }
             }
             else
-                return nullReturn;
+                return nullptr;
         }
     }
 
     DetatchParent(secondTreeRoot, parentNode);
 
-    return *secondTreeRoot;
+    return secondTreeRoot;
 }
 
 void AddDetatchedValuesBack(Node* root, Node* detatchedRoot)
 {
     bool valuesAdded = false;
 
+    if (detatchedRoot->value == root->value)
+    {
+        if (root->left != nullptr)
+        {
+            root = root->left;
+            detatchedRoot->left = nullptr;
+        }
+        else if (root->right != nullptr)
+        {
+            root = root->right;
+            detatchedRoot->right = nullptr;
+        }
+    }
+
     Node* tempRoot = detatchedRoot;
-    Node* currentNode = detatchedRoot->left;
+    Node* currentNode = detatchedRoot;
 
     while (!valuesAdded)
     {
-        if (detatchedRoot->value == currentNode->value)
-            valuesAdded = true;
-        else if (currentNode->value < tempRoot->value)
+        if (tempRoot == detatchedRoot)
         {
-            if (currentNode != nullptr)
-                root = root->left;
+            if (detatchedRoot->left != nullptr)
+                currentNode = detatchedRoot->left;
+            else if (detatchedRoot->right != nullptr)
+                currentNode = detatchedRoot->right;
             else
-                return nullptr;
+            {
+                delete detatchedRoot;
+                valuesAdded = true;
+            }
+        }
+
+        if (currentNode->value < tempRoot->value)
+        {
+            if (currentNode->left == nullptr && currentNode->right == nullptr)
+            {
+                Insert(root, currentNode);
+                tempRoot->left = nullptr;
+                tempRoot = detatchedRoot;
+                currentNode = detatchedRoot;
+            }
+            else
+            {
+                tempRoot = currentNode;
+                if (currentNode->left != nullptr)
+                    currentNode = currentNode->left;
+                else
+                    currentNode = currentNode->right;
+            }
+        }
+        else if (currentNode->value > tempRoot->value)
+        {
+            if (currentNode->right == nullptr && currentNode->left == nullptr)
+            {
+                Insert(root, currentNode);
+                tempRoot->right = nullptr;
+                tempRoot = detatchedRoot;
+                currentNode = detatchedRoot;
+            }
+            else
+            {
+                tempRoot = currentNode;
+                if (currentNode->right != nullptr)
+                    currentNode = currentNode->right;
+                else
+                    currentNode = currentNode->left;
+            }
         }
     }
 }
 
-void Remove(Node* root, int value)
+void Remove(Node* root, int value) // redo entire function at home
 {
     // TODO
-    Node* nodeToRemove = &SplitTree(root, value);
+
+    Node* nodeToRemove = SplitTree(root, value);
 
     std::cout << "Detactched Tree\n";
     PreOrderPrint(nodeToRemove);
 
     AddDetatchedValuesBack(root, nodeToRemove);
+
+    std::cout << "Tree\n";
+    PreOrderPrint(root);
 }
 
 int Height(Node* n)
@@ -246,11 +306,11 @@ int main(int argc, char** argv)
     else
         std::cout << "Value Not Found" << std::endl;
 
-    Remove(&root, 10);
+    Remove(&root, 6);
 
-    std::cout << "PreOrderPrint\n";
-    PreOrderPrint(&root);
-    std::cout << std::endl;
+    //std::cout << "PreOrderPrint\n";
+    //PreOrderPrint(&root);
+    //std::cout << std::endl;
 
     return 0;
 }
