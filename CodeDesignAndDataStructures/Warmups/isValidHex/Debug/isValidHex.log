@@ -1,0 +1,9 @@
+﻿  main.cpp
+C:\Users\s201031\source\repos\isValidHex\isValidHex\main.cpp(17,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s201031\source\repos\isValidHex\isValidHex\main.cpp(21,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s201031\source\repos\isValidHex\isValidHex\main.cpp(25,76): warning C4302: 'type cast': truncation from 'const _Ty *' to 'char'
+          with
+          [
+              _Ty=char
+          ]
+  isValidHex.vcxproj -> C:\Users\s201031\source\repos\isValidHex\Debug\isValidHex.exe

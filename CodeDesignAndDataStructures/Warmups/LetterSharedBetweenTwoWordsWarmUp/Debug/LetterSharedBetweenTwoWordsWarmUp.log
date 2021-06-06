@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\s201031\source\repos\LetterSharedBetweenTwoWordsWarmUp\LetterSharedBetweenTwoWordsWarmUp\main.cpp(11,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s201031\source\repos\LetterSharedBetweenTwoWordsWarmUp\LetterSharedBetweenTwoWordsWarmUp\main.cpp(13,27): warning C4018: '<': signed/unsigned mismatch
+  LetterSharedBetweenTwoWordsWarmUp.vcxproj -> C:\Users\s201031\source\repos\LetterSharedBetweenTwoWordsWarmUp\Debug\LetterSharedBetweenTwoWordsWarmUp.exe
