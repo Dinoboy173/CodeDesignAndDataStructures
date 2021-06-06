@@ -101,161 +101,129 @@ void Insert(Node* root, Node* nodeToInsert)
     }
 }
 
-void DetatchParent(Node* childNode, Node* parentNode)
-{
-    if (childNode->value < parentNode->value)
-    {
-        parentNode->left = nullptr;
-    }
-    else if (childNode->value > parentNode->value)
-    {
-        parentNode->right = nullptr;
-    }
-}
-
-Node* SplitTree(Node* root, int value)
-{
-    bool isFound = false;
-    bool valueIsLeft;
-
-    Node* parentNode = root;
-    Node* secondTreeRoot = root;
-
-    while (!isFound)
-    {
-        if (value == parentNode->value)
-            isFound = true;
-        else if (value < parentNode->value)
-        {
-            if (parentNode->left != nullptr)
-            {
-                if (parentNode->left->value == value)
-                {
-                    secondTreeRoot = parentNode->left;
-                    valueIsLeft = true;
-                    isFound = true;
-                }
-                else
-                {
-                    parentNode = parentNode->left;
-                }
-            }
-            else
-                return nullptr;
-        }
-        else if (value > parentNode->value)
-        {
-            if (parentNode->right != nullptr)
-            {
-                if (parentNode->right->value == value)
-                {
-                    secondTreeRoot = parentNode->right;
-                    valueIsLeft = false;
-                    isFound = true;
-                }
-                else
-                {
-                    parentNode = parentNode->right;
-                }
-            }
-            else
-                return nullptr;
-        }
-    }
-
-    DetatchParent(secondTreeRoot, parentNode);
-
-    return secondTreeRoot;
-}
-
-void AddDetatchedValuesBack(Node* root, Node* detatchedRoot)
-{
-    bool valuesAdded = false;
-
-    if (detatchedRoot->value == root->value)
-    {
-        if (root->left != nullptr)
-        {
-            root = root->left;
-            detatchedRoot->left = nullptr;
-        }
-        else if (root->right != nullptr)
-        {
-            root = root->right;
-            detatchedRoot->right = nullptr;
-        }
-    }
-
-    Node* tempRoot = detatchedRoot;
-    Node* currentNode = detatchedRoot;
-
-    while (!valuesAdded)
-    {
-        if (tempRoot == detatchedRoot)
-        {
-            if (detatchedRoot->left != nullptr)
-                currentNode = detatchedRoot->left;
-            else if (detatchedRoot->right != nullptr)
-                currentNode = detatchedRoot->right;
-            else
-            {
-                delete detatchedRoot;
-                valuesAdded = true;
-            }
-        }
-
-        if (currentNode->value < tempRoot->value)
-        {
-            if (currentNode->left == nullptr && currentNode->right == nullptr)
-            {
-                Insert(root, currentNode);
-                tempRoot->left = nullptr;
-                tempRoot = detatchedRoot;
-                currentNode = detatchedRoot;
-            }
-            else
-            {
-                tempRoot = currentNode;
-                if (currentNode->left != nullptr)
-                    currentNode = currentNode->left;
-                else
-                    currentNode = currentNode->right;
-            }
-        }
-        else if (currentNode->value > tempRoot->value)
-        {
-            if (currentNode->right == nullptr && currentNode->left == nullptr)
-            {
-                Insert(root, currentNode);
-                tempRoot->right = nullptr;
-                tempRoot = detatchedRoot;
-                currentNode = detatchedRoot;
-            }
-            else
-            {
-                tempRoot = currentNode;
-                if (currentNode->right != nullptr)
-                    currentNode = currentNode->right;
-                else
-                    currentNode = currentNode->left;
-            }
-        }
-    }
-}
-
-void Remove(Node* root, int value) // redo entire function at home
+Node* Find(Node* root, Node* parent, int value)
 {
     // TODO
 
-    Node* nodeToRemove = SplitTree(root, value);
+    bool isFound = false;
 
-    std::cout << "Detactched Tree\n";
-    PreOrderPrint(nodeToRemove);
+    while (!isFound)
+    {
+        if (value == root->value)
+            isFound = true;
+        else if (value < root->value)
+        {
+            if (root->left != nullptr)
+            {
+                root = root->left;
 
-    AddDetatchedValuesBack(root, nodeToRemove);
+                if (parent->left != root)
+                    parent = parent->left;
+            }
+            else
+                return nullptr;
+        }
+        else if (value > root->value)
+        {
+            if (root->right != nullptr)
+            {
+                root = root->right;
+            
+                if (parent->right != root)
+                    parent = parent->right;
+            }
+            else
+                return nullptr;
+        }
+    }
 
-    std::cout << "Tree\n";
-    PreOrderPrint(root);
+    return parent;
+}
+
+void InsertTree(Node* root, Node* secondRoot)
+{
+    bool nodesInserted = false;
+
+    Node* tempRoot = secondRoot;
+    Node* parent = secondRoot;
+
+    while (!nodesInserted)
+    {
+        if (secondRoot->value == tempRoot->value)
+            nodesInserted = true;
+
+        if (secondRoot->left != nullptr)
+        {
+            secondRoot = secondRoot->left;
+            nodesInserted = false;
+        }
+
+        else if (secondRoot->right != nullptr)
+        {
+            secondRoot = secondRoot->right;
+            nodesInserted = false;
+        }
+
+        else if (secondRoot->left == nullptr && secondRoot->right == nullptr)
+        {
+            Insert(root, secondRoot);
+
+            nodesInserted = false;
+            secondRoot = tempRoot;
+        }
+    }
+}
+
+Node Remove(Node* root, int value)
+{
+    // TODO
+    Node* parent = Find(root, root, value);
+    Node* secondRoot = root;
+
+    //----------------------------------------------- doesn't work redo
+    if (parent == root)
+    {
+        if (root->left != nullptr)
+        {
+            secondRoot = root;
+            root = root->left;
+            secondRoot->left = nullptr;
+        }
+        else if (root->right != nullptr)
+        {
+            secondRoot = root;
+            root = root->right;
+            secondRoot->right = nullptr;
+        }
+    }
+    else
+    {
+        if (parent->left->value == value)
+        {
+            secondRoot = parent->left;
+            parent->left = nullptr;
+        }
+        else if (parent->right->value == value)
+        {
+            secondRoot = parent->right;
+            parent->right = nullptr;
+        }
+    }
+    //-----------------------------------------------
+
+    if (secondRoot->left != nullptr)
+    {
+        Insert(root, secondRoot->left);
+        secondRoot->left = nullptr;
+    }
+
+    if (secondRoot->right != nullptr)
+    {
+        Insert(root, secondRoot->right);
+        secondRoot->right = nullptr;
+    }
+
+    return *root;
 }
 
 int Height(Node* n)
@@ -299,18 +267,18 @@ int main(int argc, char** argv)
     PreOrderPrint(&root);
     std::cout << std::endl;
 
-    auto foundValue = Find(&root, 10);
+    Node* foundValue = Find(&root, 10);
 
     if (foundValue != nullptr)
         std::cout << "Found: " << foundValue->value << std::endl;
     else
         std::cout << "Value Not Found" << std::endl;
 
-    Remove(&root, 6);
+    root = Remove(&root, 8);
 
-    //std::cout << "PreOrderPrint\n";
-    //PreOrderPrint(&root);
-    //std::cout << std::endl;
+    std::cout << "PreOrderPrint Tree\n";
+    PreOrderPrint(&root);
+    std::cout << std::endl;
 
     return 0;
 }
