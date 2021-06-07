@@ -8,4 +8,5 @@ C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStruc
 C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\LinkedList.h(151): message : while compiling class template member function 'void LinkedList<int>::Sort(void)'
 C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\main.cpp(27): message : see reference to function template instantiation 'void LinkedList<int>::Sort(void)' being compiled
 C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\CodeDesignAndDataStructures\main.cpp(7): message : see reference to class template instantiation 'LinkedList<int>' being compiled
-  CodeDesignAndDataStructures.vcxproj -> C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\x64\Debug\LinkedLists.exe
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\s201031\Desktop\Work\CodeDesignAndDataStructures\CodeDesignAndDataStructures\x64\Debug\LinkedLists.exe : fatal error LNK1120: 1 unresolved externals

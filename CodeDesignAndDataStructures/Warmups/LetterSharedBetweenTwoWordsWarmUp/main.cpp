@@ -40,7 +40,7 @@ int SharedLetters2(std::string word1, std::string word2)
     return count;
 }
 
-int main()
+int Client()
 {
     std::cout << SharedLetters1("apple", "meaty") << std::endl; // 2
     std::cout << SharedLetters1("fan", "forsook") << std::endl; // 1

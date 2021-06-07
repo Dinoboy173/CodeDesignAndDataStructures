@@ -23,6 +23,7 @@
     <ProjectGuid>{E8D7E8CF-23C7-46F1-9A39-BE4AAC978843}</ProjectGuid>
     <RootNamespace>LetterSharedBetweenTwoWordsWarmUp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>LetterSharedBetweenTwoWords</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

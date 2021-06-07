@@ -37,7 +37,7 @@ bool isValidHexCode(std::string hexCode)
 }
 
 
-int main()
+int Client()
 {
     std::string hex1 = "#CD5C5C";
     std::string hex2 = "#EAECEE";

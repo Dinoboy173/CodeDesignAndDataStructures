@@ -56,7 +56,7 @@ bool isMiniSudoku(int board[3][3])
     return true;
 }
 
-int main()
+int Client()
 {
     int board1[3][3] = { {1, 3, 2}, {9, 7, 8}, {4, 5, 6} };
     int board2[3][3] = { {8, 9, 2}, {5, 6, 1}, {3, 7, 4} };
